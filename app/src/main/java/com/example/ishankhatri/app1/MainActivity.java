@@ -1,6 +1,7 @@
 package com.example.ishankhatri.app1;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,10 +18,14 @@ public class MainActivity extends AppCompatActivity {
     //Send Message method
     public void sendMessage(View view){
         //Do something when the button is pressed
-        Intent lmao = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        getIntent().putExtra(EXTRA_MESSAGE, message);
-        startActivity(lmao);
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.app_name)
+                .setTitle(R.string.app_name);
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
     }
 }
