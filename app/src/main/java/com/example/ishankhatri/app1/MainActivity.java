@@ -12,25 +12,31 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Toast.makeText(MainActivity.this,"Message sent to Timbuktu",Toast.LENGTH_LONG).show();
+        /*Button button = (Button) findViewById(R.id.send_button);
+        View.OnClickListener myListener = new View.OnClickListener() {
+            public void onClick(View v) {
+                // Do something in response to button click
+
+            }
+        };
+        button.setOnClickListener(myListener);*/
     }
 
     //Send Message method
-    /*public void sendMessage(View view){
+    public void sendMessage(View view){
         //Do something when the button is pressed
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText editText = (EditText) findViewById(R.id.edit_message);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
         Toast.makeText(MainActivity.this,"Message sent to Timbuktu",Toast.LENGTH_LONG).show();
-    }*/
-
-    Button button = (Button) findViewById(R.id.send_button);
-    View.OnClickListener myListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            // Do something in response to button click
-            Toast.makeText(MainActivity.this,"Message sent to Timbuktu",Toast.LENGTH_LONG).show();
-        }
-    };
-    button.setOnClickListener(myListener);
+        startActivity(intent);
+    }
 }
