@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    //Send Message method
+    //Save Message method
     public void saveMessage(View view) throws IOException{
-        //Do something when the button is pressed
         FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         fos.write(editText.getText().toString().getBytes());
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this,"Message sent to Timbuktu",Toast.LENGTH_LONG).show();
     }
 
+    //Method to open the saved message (message is saved in a file on the HDD)
     public void openMessage(View view) throws IOException {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         FileInputStream fis = openFileInput(FILENAME);
@@ -49,5 +49,12 @@ public class MainActivity extends AppCompatActivity {
         fis.close();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+    }
+
+    //Method to input coordinates
+    public void sendCoords() throws IOException{
+        FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+        EditText editNumbers = (EditText) findViewById(R.id.editNumbers);
+        fos.write(editNumbers.getText().toString().getBytes());
     }
 }
